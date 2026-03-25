@@ -8,8 +8,7 @@
   <style>
     body { background: #0a0a0f; color: #e0e0ff; overflow-x: hidden; }
     .cosmo-bg {
-      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), 
-                  url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0') center/cover no-repeat fixed;
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0') center/cover no-repeat fixed;
       position: relative;
     }
     .star {
@@ -36,10 +35,9 @@
 </head>
 <body class="cosmo-bg min-h-screen">
 
-  <!-- Shooting Stars -->
   <div id="stars" class="fixed inset-0 pointer-events-none z-10"></div>
 
-  <!-- Top Nav - JOIN DISCORD removed -->
+  <!-- Top Nav -->
   <nav class="fixed top-0 w-full bg-black/90 border-b border-purple-800 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-10">
@@ -92,7 +90,7 @@
 
       <!-- Rust -->
       <div onclick="showOptions('Rust Internal', [6.99,12.99,24.99,134.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="YOUR_RUST_IMAGE_URL_HERE" class="w-full h-52 object-cover">
+        <img src="https://i.imgur.com/..." class="w-full h-52 object-cover" alt="Rust">
         <div class="p-5">
           <div class="font-semibold text-xl">Rust Internal</div>
           <div class="text-sm text-purple-400 mt-1">Advanced ESP • Aimbot • Silent Aim</div>
@@ -101,7 +99,7 @@
 
       <!-- Fortnite -->
       <div onclick="showOptions('Fortnite Delta', [6.99,12.99,29.99,124.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="YOUR_FORTNITE_IMAGE_URL_HERE" class="w-full h-52 object-cover">
+        <img src="https://i.imgur.com/..." class="w-full h-52 object-cover" alt="Fortnite">
         <div class="p-5">
           <div class="font-semibold text-xl">Fortnite Delta</div>
           <div class="text-sm text-purple-400 mt-1">Aim Assistance • Building Prediction • Loot ESP</div>
@@ -110,7 +108,7 @@
 
       <!-- Valorant -->
       <div onclick="showOptions('Valorant Limitless', [4.99,9.99,19.99,99.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="YOUR_VALORANT_IMAGE_URL_HERE" class="w-full h-52 object-cover">
+        <img src="https://i.imgur.com/..." class="w-full h-52 object-cover" alt="Valorant">
         <div class="p-5">
           <div class="font-semibold text-xl">Valorant Limitless</div>
           <div class="text-sm text-purple-400 mt-1">Triggerbot • Recoil Control • Wallhack</div>
@@ -119,7 +117,7 @@
 
       <!-- CS2 -->
       <div onclick="showOptions('CS2 Valo', [3.99,6.99,19.99,75])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="YOUR_CS2_IMAGE_URL_HERE" class="w-full h-52 object-cover">
+        <img src="https://i.imgur.com/..." class="w-full h-52 object-cover" alt="CS2">
         <div class="p-5">
           <div class="font-semibold text-xl">CS2 Valo</div>
           <div class="text-sm text-purple-400 mt-1">Legit Aim • Radar • Skin Changer</div>
@@ -128,14 +126,14 @@
 
       <!-- R6 -->
       <div onclick="showOptions('R6 Ignite', [6.99,12.99,24.99,114.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="YOUR_R6_IMAGE_URL_HERE" class="w-full h-52 object-cover">
+        <img src="https://i.imgur.com/..." class="w-full h-52 object-cover" alt="R6">
         <div class="p-5">
           <div class="font-semibold text-xl">R6 Ignite</div>
           <div class="text-sm text-purple-400 mt-1">No Recoil • Enemy Glow • Drone ESP</div>
         </div>
       </div>
 
-      <!-- Greyed out games -->
+      <!-- Greyed out -->
       <div class="grey-card bg-zinc-950 rounded-3xl overflow-hidden">
         <div class="h-52 bg-zinc-900 flex items-center justify-center text-6xl">🛡️</div>
         <div class="p-5">
@@ -160,7 +158,7 @@
         </div>
       </div>
 
-      <!-- Call of Duty Dropdown -->
+      <!-- Call of Duty -->
       <div class="relative glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
         <div class="h-52 bg-gradient-to-br from-purple-900 to-black flex items-center justify-center text-7xl">🔫</div>
         <div class="p-5">
@@ -185,7 +183,7 @@
   </div>
 
   <script>
-    // Online counter (slow realistic change)
+    // Online counter
     let currentOnline = Math.floor(Math.random() * (562 - 39 + 1)) + 39;
     document.getElementById('online-count').textContent = currentOnline + " ONLINE";
 
@@ -220,30 +218,27 @@
       const isFortnite = game.includes('Fortnite');
 
       prices.forEach((price, i) => {
-        let displayPrice = price;
+        let display = price;
         let crossed = '';
         if (isFortnite && i === 3) {
           crossed = `<span class="line-through text-gray-500 mr-2">$249.99</span>`;
-          displayPrice = 124.99;
+          display = 124.99;
         }
-        html += `
-          <div class="bg-zinc-900 rounded-2xl p-5 flex justify-between items-center hover:bg-zinc-800 cursor-pointer" onclick="addToCart('${game}', '${labels[i]}', ${displayPrice})">
-            <div class="font-semibold">${labels[i]}</div>
-            <div class="text-right">
-              ${crossed}<span class="text-2xl font-bold text-purple-400">$${displayPrice}</span>
-            </div>
-          </div>`;
+        html += `<div class="bg-zinc-900 rounded-2xl p-5 flex justify-between items-center hover:bg-zinc-800 cursor-pointer" onclick="addToCart('${game}', '${labels[i]}', ${display})">
+          <div class="font-semibold">${labels[i]}</div>
+          <div>${crossed}<span class="text-2xl font-bold text-purple-400">$${display}</span></div>
+        </div>`;
       });
       document.getElementById('options').innerHTML = html;
       document.getElementById('modal').classList.remove('hidden');
     }
 
     function handleCOD(version) {
-      if (version) showOptions(`Call of Duty - ${version}`, [6.99, 12.99, 29.99, 149.99]);
+      if (version) showOptions(`Call of Duty - ${version}`, [6.99,12.99,29.99,149.99]);
     }
 
     function addToCart(game, plan, price) {
-      alert(`Added to cart:\n${game} - ${plan} plan\n$${price}\n\n(Real checkout coming soon)`);
+      alert(`Added to cart:\n${game} - ${plan}\n$${price}\n\n(Real checkout coming soon)`);
       closeModal();
     }
 
@@ -251,6 +246,5 @@
       document.getElementById('modal').classList.add('hidden');
     }
   </script>
-
 </body>
 </html>
