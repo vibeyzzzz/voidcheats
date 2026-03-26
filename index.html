@@ -100,28 +100,23 @@
   <div id="page-status" class="pt-24 pb-20 hidden">
     <div class="max-w-4xl mx-auto px-6">
       <h1 class="text-5xl font-bold mb-12 text-center">Status</h1>
-      
       <div class="space-y-8">
         <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
           <h2 class="text-2xl font-bold mb-6">Rust Cheats</h2>
           <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>Rust Internal</span><span class="text-yellow-400">● Updating</span></div>
         </div>
-
         <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
           <h2 class="text-2xl font-bold mb-6">Fortnite Cheats</h2>
           <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>Fortnite Delta</span><span class="text-yellow-400">● Updating</span></div>
         </div>
-
         <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
           <h2 class="text-2xl font-bold mb-6">Valorant Cheats</h2>
           <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>Valorant Limitless</span><span class="text-yellow-400">● Updating</span></div>
         </div>
-
         <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
           <h2 class="text-2xl font-bold mb-6">CS2 Cheats</h2>
           <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>CS2 Valo</span><span class="text-yellow-400">● Updating</span></div>
         </div>
-
         <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
           <h2 class="text-2xl font-bold mb-6">R6 Cheats</h2>
           <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>R6 Ignite</span><span class="text-yellow-400">● Updating</span></div>
@@ -150,7 +145,35 @@
         <div>Total</div>
         <div id="cart-total">$0.00</div>
       </div>
-      <button onclick="checkout()" class="w-full bg-purple-600 hover:bg-purple-500 py-5 rounded-2xl font-medium">CHECKOUT</button>
+      <button onclick="goToCheckout()" class="w-full bg-purple-600 hover:bg-purple-500 py-5 rounded-2xl font-medium">PROCEED TO CHECKOUT</button>
+    </div>
+  </div>
+
+  <!-- Checkout Page -->
+  <div id="page-checkout" class="pt-24 pb-20 hidden">
+    <div class="max-w-2xl mx-auto px-6">
+      <button onclick="showPage('store')" class="mb-8 text-purple-400 hover:text-purple-300">← Back to Store</button>
+      <h1 class="text-4xl font-bold mb-8">Checkout</h1>
+
+      <div class="bg-zinc-950 border border-purple-600 rounded-3xl p-8">
+        <h2 class="text-2xl font-semibold mb-6">Payment Method</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <button onclick="selectPayment('Apple Pay')" class="bg-zinc-900 hover:bg-zinc-800 p-6 rounded-2xl text-center"> Apple Pay</button>
+          <button onclick="selectPayment('Credit Card')" class="bg-zinc-900 hover:bg-zinc-800 p-6 rounded-2xl text-center">💳 Credit / Debit Card</button>
+          <button onclick="selectPayment('PayPal')" class="bg-zinc-900 hover:bg-zinc-800 p-6 rounded-2xl text-center">PayPal</button>
+          <button onclick="selectPayment('Cash App')" class="bg-zinc-900 hover:bg-zinc-800 p-6 rounded-2xl text-center">Cash App</button>
+        </div>
+
+        <div id="payment-details" class="mt-10 hidden">
+          <p class="text-sm text-purple-300 mb-4">You selected: <span id="selected-method" class="font-medium"></span></p>
+          <button onclick="completeCheckout()" class="w-full bg-green-600 hover:bg-green-500 py-5 rounded-2xl font-medium">COMPLETE PURCHASE</button>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center text-sm text-purple-300">
+        All payments go to the VOID CHEATS PayPal account.<br>
+        You will receive download links via email after payment.
+      </div>
     </div>
   </div>
 
@@ -197,12 +220,22 @@
       alert(`Added to cart: ${game} - ${plan} ($${price})`);
     }
 
-    function checkout() {
-      if (cart.length === 0) return;
-      alert("Thank you for shopping at VOID CHEATS!\n\nReal checkout coming soon");
+    function goToCheckout() {
+      if (cart.length === 0) return alert("Cart is empty");
+      toggleCart();
+      showPage('checkout');
+    }
+
+    function selectPayment(method) {
+      document.getElementById('selected-method').textContent = method;
+      document.getElementById('payment-details').classList.remove('hidden');
+    }
+
+    function completeCheckout() {
+      alert("Thank you for your purchase at VOID CHEATS!\n\nPayment processed via PayPal.\nDownload links will be emailed shortly.");
       cart = [];
       updateCartCount();
-      toggleCart();
+      showPage('store');
     }
 
     function showOptions(game, prices) {
@@ -240,7 +273,7 @@
       document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
       document.getElementById('page-' + page).classList.remove('hidden');
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      document.getElementById('nav-' + page).classList.add('active');
+      if (document.getElementById('nav-' + page)) document.getElementById('nav-' + page).classList.add('active');
     }
 
     function filterGames() {
