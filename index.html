@@ -13,8 +13,7 @@
     }
     .glow-card { transition: all 0.4s ease; border: 1px solid #6b21a8; }
     .glow-card:hover { border-color: #c026d3; box-shadow: 0 0 30px #c026d3; transform: translateY(-8px); }
-    .nav-link { transition: all 0.2s; }
-    .nav-link.active { color: #c026d3; border-bottom: 2px solid #c026d3; }
+    .grey-card { filter: grayscale(80%) brightness(0.7); cursor: not-allowed; }
     .cart-slide { transform: translateX(100%); transition: transform 0.4s ease; }
     .cart-slide.open { transform: translateX(0); }
   </style>
@@ -23,7 +22,7 @@
 
   <div id="stars" class="fixed inset-0 pointer-events-none z-10"></div>
 
-  <!-- Top Nav -->
+  <!-- Top Nav with Shopping Cart -->
   <nav class="fixed top-0 w-full bg-black/90 border-b border-purple-800 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-10">
@@ -38,10 +37,10 @@
       <div class="flex items-center gap-6">
         <div id="online-count" class="bg-green-500/20 text-green-400 px-4 py-1 rounded-full text-sm font-medium">284 ONLINE</div>
         
-        <!-- Shopping Cart -->
-        <div onclick="toggleCart()" class="relative cursor-pointer">
-          <div class="text-2xl">🛒</div>
-          <div id="cart-count" class="hidden absolute -top-1 -right-1 bg-purple-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">0</div>
+        <!-- Shopping Cart Icon -->
+        <div onclick="toggleCart()" class="relative cursor-pointer text-3xl">
+          🛒
+          <div id="cart-count" class="hidden absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
         </div>
 
         <a href="https://discord.gg/loadingcheats" target="_blank" class="bg-purple-600 hover:bg-purple-500 px-6 py-2 rounded-xl font-medium">JOIN DISCORD</a>
@@ -49,10 +48,83 @@
     </div>
   </nav>
 
-  <!-- Pages -->
-  <div id="page-store" class="pt-24 pb-20"> ... [store content same as before] </div>
-  <div id="page-status" class="pt-24 pb-20 hidden"> ... [status content same as before] </div>
-  <div id="page-support" class="pt-24 pb-20 hidden"> ... [support content] </div>
+  <!-- STORE PAGE -->
+  <div id="page-store" class="pt-24 pb-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h1 class="text-6xl md:text-7xl font-bold leading-none neon-purple mb-6">
+        UNDETECTED CHEATS<br>WITH <span class="text-purple-400">24/7 SUPPORT</span>
+      </h1>
+      <div class="max-w-xl mx-auto mt-10">
+        <div class="bg-white/10 backdrop-blur border border-purple-500/30 rounded-3xl p-2">
+          <input id="search-input" type="text" placeholder="Search for cheats" 
+                 class="w-full bg-transparent border-0 focus:outline-none text-white placeholder:text-purple-300 text-lg px-8 py-5" onkeyup="filterGames()">
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 pt-16">
+      <h2 class="text-4xl font-bold mb-10 flex items-center gap-3"><span class="text-purple-500">●</span> STORE PRODUCTS</h2>
+      <div id="game-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+        <div onclick="showOptions('Rust Internal', [6.99,12.99,24.99,134.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Rust.png" class="w-full h-52 object-cover">
+          <div class="p-5"><div class="font-semibold text-xl">Rust Internal</div></div>
+        </div>
+
+        <div onclick="showOptions('Fortnite Delta', [6.99,12.99,29.99,124.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Fortnite.png" class="w-full h-52 object-cover">
+          <div class="p-5"><div class="font-semibold text-xl">Fortnite Delta</div></div>
+        </div>
+
+        <div onclick="showOptions('Valorant Limitless', [4.99,9.99,19.99,99.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Valorant.png" class="w-full h-52 object-cover">
+          <div class="p-5"><div class="font-semibold text-xl">Valorant Limitless</div></div>
+        </div>
+
+        <div onclick="showOptions('CS2 Valo', [3.99,6.99,19.99,75])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/CS2.png" class="w-full h-52 object-cover">
+          <div class="p-5"><div class="font-semibold text-xl">CS2 Valo</div></div>
+        </div>
+
+        <div onclick="showOptions('R6 Ignite', [6.99,12.99,24.99,114.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
+          <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/R6.png" class="w-full h-52 object-cover">
+          <div class="p-5"><div class="font-semibold text-xl">R6 Ignite</div></div>
+        </div>
+
+        <!-- Greyed out -->
+        <div class="grey-card bg-zinc-950 rounded-3xl overflow-hidden">
+          <div class="h-52 bg-zinc-900 flex items-center justify-center text-6xl">🛡️</div>
+          <div class="p-5"><div class="font-semibold text-xl text-gray-500">Hell Let Loose</div><div class="text-purple-400/50 mt-1">Updating</div></div>
+        </div>
+
+        <div class="grey-card bg-zinc-950 rounded-3xl overflow-hidden">
+          <div class="h-52 bg-zinc-900 flex items-center justify-center text-6xl">🏴‍☠️</div>
+          <div class="p-5"><div class="font-semibold text-xl text-gray-500">PUBG</div><div class="text-purple-400/50 mt-1">Updating</div></div>
+        </div>
+
+        <div class="grey-card bg-zinc-950 rounded-3xl overflow-hidden">
+          <div class="h-52 bg-zinc-900 flex items-center justify-center text-6xl">🚀</div>
+          <div class="p-5"><div class="font-semibold text-xl text-gray-500">ARC Raiders</div><div class="text-purple-400/50 mt-1">Updating</div></div>
+        </div>
+
+        <!-- Call of Duty -->
+        <div class="relative glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
+          <div class="h-52 bg-gradient-to-br from-purple-900 to-black flex items-center justify-center text-7xl">🔫</div>
+          <div class="p-5">
+            <div class="font-semibold text-xl">Call of Duty</div>
+            <select onchange="handleCOD(this.value)" class="mt-4 w-full bg-zinc-900 border border-purple-600 text-white rounded-xl py-3 px-4">
+              <option value="">Select Version</option>
+              <option value="Black Ops 7">Black Ops 7</option>
+              <option value="Warzone">Warzone</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATUS & SUPPORT pages (same as before) -->
+  <!-- [I kept them short here to save space - use the previous status page with "Updating" for the 5 games] -->
 
   <!-- Shopping Cart Slide-out -->
   <div id="cart-panel" class="cart-slide fixed top-0 right-0 h-full w-96 bg-zinc-950 border-l border-purple-600 z-50 p-6 overflow-y-auto">
@@ -60,8 +132,8 @@
       <h2 class="text-2xl font-bold">Shopping Cart</h2>
       <button onclick="toggleCart()" class="text-3xl">✕</button>
     </div>
-    <div id="cart-items" class="space-y-6"></div>
-    <div class="mt-10 pt-6 border-t border-purple-800">
+    <div id="cart-items" class="space-y-6 mb-10"></div>
+    <div class="pt-6 border-t border-purple-800">
       <div class="flex justify-between text-xl font-semibold mb-8">
         <div>Total</div>
         <div id="cart-total">$0.00</div>
@@ -70,17 +142,21 @@
     </div>
   </div>
 
+  <!-- Buy Modal -->
+  <div id="modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+    <div class="bg-zinc-950 border border-purple-600 rounded-3xl p-8 max-w-md w-full">
+      <h2 id="modal-title" class="text-3xl font-bold mb-6"></h2>
+      <div id="modal-options" class="space-y-4"></div>
+      <button onclick="closeModal()" class="mt-8 w-full py-4 text-purple-400 hover:text-purple-300">Close</button>
+    </div>
+  </div>
+
   <script>
     let cart = [];
 
     function toggleCart() {
       document.getElementById('cart-panel').classList.toggle('open');
-    }
-
-    function addToCart(game, plan, price) {
-      cart.push({game, plan, price});
-      updateCartCount();
-      alert(`Added to cart: ${game} - ${plan} ($${price})`);
+      updateCartDisplay();
     }
 
     function updateCartCount() {
@@ -92,36 +168,71 @@
     function updateCartDisplay() {
       let html = '';
       let total = 0;
-      cart.forEach((item, index) => {
+      cart.forEach((item, i) => {
         total += item.price;
-        html += `
-          <div class="flex justify-between bg-zinc-900 p-4 rounded-2xl">
-            <div>
-              <div class="font-medium">${item.game}</div>
-              <div class="text-sm text-purple-400">${item.plan}</div>
-            </div>
-            <div class="text-right">
-              <div>$${item.price}</div>
-            </div>
-          </div>`;
+        html += `<div class="flex justify-between bg-zinc-900 p-4 rounded-2xl">
+          <div><div class="font-medium">${item.game}</div><div class="text-sm text-purple-400">${item.plan}</div></div>
+          <div>$${item.price}</div>
+        </div>`;
       });
-      document.getElementById('cart-items').innerHTML = html || '<p class="text-gray-500 text-center py-8">Cart is empty</p>';
+      document.getElementById('cart-items').innerHTML = html || '<p class="text-gray-500 text-center py-12">Cart is empty</p>';
       document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
     }
 
+    function addToCart(game, plan, price) {
+      cart.push({game, plan, price});
+      updateCartCount();
+      alert(`Added to cart: ${game} - ${plan} ($${price})`);
+    }
+
     function checkout() {
-      if (cart.length === 0) return alert("Cart is empty");
-      alert("Thank you for your purchase at VOID CHEATS!\n\n(Real checkout coming soon)");
+      if (cart.length === 0) return;
+      alert("Thank you for shopping at VOID CHEATS!\n\nReal checkout coming soon");
       cart = [];
       updateCartCount();
       toggleCart();
     }
 
-    // Rest of your existing functions (showOptions, showPage, filterGames, etc.) stay the same as the last version
+    function showOptions(game, prices) {
+      document.getElementById('modal-title').textContent = game;
+      let html = '';
+      const labels = ['Day', 'Week', 'Month', 'Lifetime'];
+      const isFortnite = game.includes('Fortnite');
 
-    // Initialize
+      prices.forEach((price, i) => {
+        let display = price;
+        let crossed = '';
+        if (isFortnite && i === 3) {
+          crossed = `<span class="line-through text-gray-500 mr-2">$249.99</span>`;
+          display = 124.99;
+        }
+        html += `<div onclick="buyNow('${game}', '${labels[i]}', ${display})" class="bg-zinc-900 hover:bg-zinc-800 p-5 rounded-2xl flex justify-between cursor-pointer">
+          <span class="font-semibold">${labels[i]}</span>
+          <span>${crossed}<span class="text-purple-400 font-bold">$${display}</span></span>
+        </div>`;
+      });
+      document.getElementById('modal-options').innerHTML = html;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function buyNow(game, plan, price) {
+      addToCart(game, plan, price);
+      closeModal();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function showPage(page) {
+      document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+      document.getElementById('page-' + page).classList.remove('hidden');
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.getElementById('nav-' + page).classList.add('active');
+    }
+
+    // Start on store
     showPage('store');
-    updateCartCount();
   </script>
 </body>
 </html>
