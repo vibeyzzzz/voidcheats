@@ -90,7 +90,7 @@
 
       <!-- Rust -->
       <div onclick="showOptions('Rust Internal', [6.99,12.99,24.99,134.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Rust.png" class="w-full h-52 object-cover">
+        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Rust.png" class="w-full h-52 object-cover" alt="Rust">
         <div class="p-5">
           <div class="font-semibold text-xl">Rust Internal</div>
           <div class="text-sm text-purple-400 mt-1">Advanced ESP • Aimbot • Silent Aim</div>
@@ -99,7 +99,7 @@
 
       <!-- Fortnite -->
       <div onclick="showOptions('Fortnite Delta', [6.99,12.99,29.99,124.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Fortnite.png" class="w-full h-52 object-cover">
+        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Fortnite.png" class="w-full h-52 object-cover" alt="Fortnite">
         <div class="p-5">
           <div class="font-semibold text-xl">Fortnite Delta</div>
           <div class="text-sm text-purple-400 mt-1">Aim Assistance • Building Prediction • Loot ESP</div>
@@ -108,7 +108,7 @@
 
       <!-- Valorant -->
       <div onclick="showOptions('Valorant Limitless', [4.99,9.99,19.99,99.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Valorant.png" class="w-full h-52 object-cover">
+        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/Valorant.png" class="w-full h-52 object-cover" alt="Valorant">
         <div class="p-5">
           <div class="font-semibold text-xl">Valorant Limitless</div>
           <div class="text-sm text-purple-400 mt-1">Triggerbot • Recoil Control • Wallhack</div>
@@ -117,7 +117,7 @@
 
       <!-- CS2 -->
       <div onclick="showOptions('CS2 Valo', [3.99,6.99,19.99,75])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/CS2.png" class="w-full h-52 object-cover">
+        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/CS2.png" class="w-full h-52 object-cover" alt="CS2">
         <div class="p-5">
           <div class="font-semibold text-xl">CS2 Valo</div>
           <div class="text-sm text-purple-400 mt-1">Legit Aim • Radar • Skin Changer</div>
@@ -126,7 +126,7 @@
 
       <!-- R6 -->
       <div onclick="showOptions('R6 Ignite', [6.99,12.99,24.99,114.99])" class="glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/R6.png" class="w-full h-52 object-cover">
+        <img src="https://raw.githubusercontent.com/vibeyzzzz/voidcheats/main/R6.png" class="w-full h-52 object-cover" alt="R6">
         <div class="p-5">
           <div class="font-semibold text-xl">R6 Ignite</div>
           <div class="text-sm text-purple-400 mt-1">No Recoil • Enemy Glow • Drone ESP</div>
@@ -183,6 +183,7 @@
   </div>
 
   <script>
+    // Online counter
     let currentOnline = Math.floor(Math.random() * (562 - 39 + 1)) + 39;
     document.getElementById('online-count').textContent = currentOnline + " ONLINE";
 
@@ -192,6 +193,7 @@
       document.getElementById('online-count').textContent = currentOnline + " ONLINE";
     }, 1200000 + Math.random() * 600000);
 
+    // Shooting stars
     function createShootingStar() {
       const star = document.createElement('div');
       star.className = 'star';
