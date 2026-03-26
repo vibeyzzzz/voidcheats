@@ -19,16 +19,22 @@
 </head>
 <body class="cosmo-bg min-h-screen">
 
-  <!-- Top Nav -->
+  <!-- Top Nav with JOIN DISCORD on the right -->
   <nav class="fixed top-0 w-full bg-black/90 border-b border-purple-800 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="text-3xl font-bold tracking-tighter">VOID<span class="text-purple-500">CHEATS</span></div>
-      <div class="flex gap-8 text-sm font-medium">
-        <a href="#" onclick="showPage('store')" class="nav-link active" id="nav-store">Store</a>
-        <a href="#" onclick="showPage('status')" class="nav-link" id="nav-status">Status</a>
-        <a href="#" onclick="showPage('support')" class="nav-link" id="nav-support">Support</a>
+      <div class="flex items-center gap-10">
+        <div class="text-3xl font-bold tracking-tighter">VOID<span class="text-purple-500">CHEATS</span></div>
+        <div class="hidden md:flex gap-8 text-sm font-medium">
+          <a href="#" onclick="showPage('store')" class="nav-link active" id="nav-store">Store</a>
+          <a href="#" onclick="showPage('status')" class="nav-link" id="nav-status">Status</a>
+          <a href="#" onclick="showPage('support')" class="nav-link" id="nav-support">Support</a>
+        </div>
       </div>
-      <div id="online-count" class="bg-green-500/20 text-green-400 px-4 py-1 rounded-full text-sm font-medium">284 ONLINE</div>
+      <div class="flex items-center gap-4">
+        <div id="online-count" class="bg-green-500/20 text-green-400 px-4 py-1 rounded-full text-sm font-medium">284 ONLINE</div>
+        <a href="https://discord.gg/loadingcheats" target="_blank" 
+           class="bg-purple-600 hover:bg-purple-500 px-6 py-2 rounded-xl font-medium">JOIN DISCORD</a>
+      </div>
     </div>
   </nav>
 
