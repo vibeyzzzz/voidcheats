@@ -13,7 +13,8 @@
     }
     .glow-card { transition: all 0.4s ease; border: 1px solid #6b21a8; }
     .glow-card:hover { border-color: #c026d3; box-shadow: 0 0 30px #c026d3; transform: translateY(-8px); }
-    .grey-card { filter: grayscale(80%) brightness(0.7); cursor: not-allowed; }
+    .nav-link { transition: all 0.2s; }
+    .nav-link.active { color: #c026d3; border-bottom: 2px solid #c026d3; }
     .cart-slide { transform: translateX(100%); transition: transform 0.4s ease; }
     .cart-slide.open { transform: translateX(0); }
   </style>
@@ -22,7 +23,7 @@
 
   <div id="stars" class="fixed inset-0 pointer-events-none z-10"></div>
 
-  <!-- Top Nav with Shopping Cart -->
+  <!-- Top Nav -->
   <nav class="fixed top-0 w-full bg-black/90 border-b border-purple-800 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-10">
@@ -37,7 +38,7 @@
       <div class="flex items-center gap-6">
         <div id="online-count" class="bg-green-500/20 text-green-400 px-4 py-1 rounded-full text-sm font-medium">284 ONLINE</div>
         
-        <!-- Shopping Cart Icon -->
+        <!-- Shopping Cart -->
         <div onclick="toggleCart()" class="relative cursor-pointer text-3xl">
           🛒
           <div id="cart-count" class="hidden absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full">0</div>
@@ -91,40 +92,51 @@
           <div class="p-5"><div class="font-semibold text-xl">R6 Ignite</div></div>
         </div>
 
-        <!-- Greyed out -->
-        <div class="grey-card bg-zinc-950 rounded-3xl overflow-hidden">
-          <div class="h-52 bg-zinc-900 flex items-center justify-center text-6xl">🛡️</div>
-          <div class="p-5"><div class="font-semibold text-xl text-gray-500">Hell Let Loose</div><div class="text-purple-400/50 mt-1">Updating</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATUS PAGE -->
+  <div id="page-status" class="pt-24 pb-20 hidden">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-5xl font-bold mb-12 text-center">Status</h1>
+      
+      <div class="space-y-8">
+        <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
+          <h2 class="text-2xl font-bold mb-6">Rust Cheats</h2>
+          <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>Rust Internal</span><span class="text-yellow-400">● Updating</span></div>
         </div>
 
-        <div class="grey-card bg-zinc-950 rounded-3xl overflow-hidden">
-          <div class="h-52 bg-zinc-900 flex items-center justify-center text-6xl">🏴‍☠️</div>
-          <div class="p-5"><div class="font-semibold text-xl text-gray-500">PUBG</div><div class="text-purple-400/50 mt-1">Updating</div></div>
+        <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
+          <h2 class="text-2xl font-bold mb-6">Fortnite Cheats</h2>
+          <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>Fortnite Delta</span><span class="text-yellow-400">● Updating</span></div>
         </div>
 
-        <div class="grey-card bg-zinc-950 rounded-3xl overflow-hidden">
-          <div class="h-52 bg-zinc-900 flex items-center justify-center text-6xl">🚀</div>
-          <div class="p-5"><div class="font-semibold text-xl text-gray-500">ARC Raiders</div><div class="text-purple-400/50 mt-1">Updating</div></div>
+        <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
+          <h2 class="text-2xl font-bold mb-6">Valorant Cheats</h2>
+          <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>Valorant Limitless</span><span class="text-yellow-400">● Updating</span></div>
         </div>
 
-        <!-- Call of Duty -->
-        <div class="relative glow-card bg-zinc-950 rounded-3xl overflow-hidden cursor-pointer">
-          <div class="h-52 bg-gradient-to-br from-purple-900 to-black flex items-center justify-center text-7xl">🔫</div>
-          <div class="p-5">
-            <div class="font-semibold text-xl">Call of Duty</div>
-            <select onchange="handleCOD(this.value)" class="mt-4 w-full bg-zinc-900 border border-purple-600 text-white rounded-xl py-3 px-4">
-              <option value="">Select Version</option>
-              <option value="Black Ops 7">Black Ops 7</option>
-              <option value="Warzone">Warzone</option>
-            </select>
-          </div>
+        <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
+          <h2 class="text-2xl font-bold mb-6">CS2 Cheats</h2>
+          <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>CS2 Valo</span><span class="text-yellow-400">● Updating</span></div>
+        </div>
+
+        <div class="bg-zinc-950 border border-purple-800 rounded-3xl p-8">
+          <h2 class="text-2xl font-bold mb-6">R6 Cheats</h2>
+          <div class="flex justify-between items-center bg-zinc-900 rounded-2xl p-5"><span>R6 Ignite</span><span class="text-yellow-400">● Updating</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- STATUS & SUPPORT pages (same as before) -->
-  <!-- [I kept them short here to save space - use the previous status page with "Updating" for the 5 games] -->
+  <!-- SUPPORT PAGE -->
+  <div id="page-support" class="pt-24 pb-20 hidden">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h1 class="text-5xl font-bold mb-8">Support</h1>
+      <p class="text-xl text-purple-300">Support page coming soon.<br>Join our Discord for immediate help.</p>
+    </div>
+  </div>
 
   <!-- Shopping Cart Slide-out -->
   <div id="cart-panel" class="cart-slide fixed top-0 right-0 h-full w-96 bg-zinc-950 border-l border-purple-600 z-50 p-6 overflow-y-auto">
@@ -168,7 +180,7 @@
     function updateCartDisplay() {
       let html = '';
       let total = 0;
-      cart.forEach((item, i) => {
+      cart.forEach(item => {
         total += item.price;
         html += `<div class="flex justify-between bg-zinc-900 p-4 rounded-2xl">
           <div><div class="font-medium">${item.game}</div><div class="text-sm text-purple-400">${item.plan}</div></div>
@@ -229,6 +241,15 @@
       document.getElementById('page-' + page).classList.remove('hidden');
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
       document.getElementById('nav-' + page).classList.add('active');
+    }
+
+    function filterGames() {
+      const term = document.getElementById('search-input').value.toLowerCase();
+      const cards = document.querySelectorAll('#game-grid > div');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(term) ? 'block' : 'none';
+      });
     }
 
     // Start on store
